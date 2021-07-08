@@ -21,6 +21,7 @@ El principal problema de concurrencia que observamos es el disparo de todas las 
 
 #### 2.2 Modelado del Sistema en Red de Petri
 ![](img/fig1.png)
+
 *Figura-01. Modelo de Red de Petri para CPU de Dos Núcleos*
 
 
@@ -46,6 +47,7 @@ La Red de Petri utilizada cuenta con una serie de propiedades, enunciadas a cont
 Realizando un análisis de propiedades por medio de la herramienta Petrinator se obtuvo:
 
 ![alt text](img/fig2.png "Propiedades ")
+
 *Figura-02. Propiedades* 
 
 
@@ -63,8 +65,11 @@ programa verifica en cada disparo que se están cumpliendo las invariantes de pl
 Realizando un análisis de estos con la herramienta Petrinator obtenemos los siguiente:
 
 ![alt text](img/fig3.png "Figura-03")
-*Figura-03* 
+
+*Figura-03*
+ 
 ![alt text](img/fig4.png "Figura-04")
+
 *Figura-04.*
 
 ##### 2.3.2 Invariantes de transición o T-invariantes: 
@@ -73,13 +78,14 @@ Un T-invariante indica un posible bucle en la red, es decir, una secuencia de tr
 Realizando el mismo análisis con Petrinator:
 
 ![alt text](img/fig5.png "Figura-05")
+
 *Figura-05.*
 
 Se pueden observar los siguientes T-invariantes:
-    • {T0, T10, T11, T12, T14, T2, T9}
-    • {T0, T10, T13, T2, T9}
-    • {T0, T1, T3, T4, T6}
-    • {T0, T1, T3, T4, T5, T7, T8}
+- {T0, T10, T11, T12, T14, T2, T9}
+- {T0, T10, T13, T2, T9}
+- {T0, T1, T3, T4, T6}
+- {T0, T1, T3, T4, T5, T7, T8}
 
 #### 2.4 Conflictos y Política de Resolución
 
@@ -117,7 +123,9 @@ En el caso c se considera la misma ejecución con los mismos parámetros pero co
 
 
 **a)** Ambos núcleos con el mismo tiempo de “service_rate”.
+
 ![Titulo2](img/plot1.png "Plot1")
+
 *Plot1*
 
 
@@ -131,7 +139,9 @@ Tareas procesadas por el NÚCLEO 2 : 500
 
 
 **b)** Un núcleo con el doble de tiempo de “service_rate” que el otro
+
 ![alt text](img/plot2.png "Plot2")
+
 *Plot2*
 
 
@@ -147,7 +157,9 @@ Duración total del programa: 25 segundos.
 
 
 **c)** Un núcleo con el triple de tiempo de “service_rate” que el otro
+
 ![alt text](img/plot3.png "Plot3")
+
 *Plot3*
 
 
@@ -164,6 +176,7 @@ A continuación se repetirá el mismo experimento pero utilizando un procesador 
 *Processor Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz,2712 Mhz, 2 Core(s), 4 Logical Processor(s)*
 
 ![alt text](img/plot4.png "Plot4")
+
 *Plot4*
 
 
@@ -174,6 +187,7 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 *Caso: 10 ms llegada de tareas, 5 ms de procesamiento buffer 1, 30 ms buffer 2*
 
 ![alt text](img/plot5.png "Plot5")
+
 *Plot5*
 
 
