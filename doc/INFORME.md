@@ -20,8 +20,10 @@ El presente trabajo tiene por objetivo el control del procesamiento de tareas qu
 El principal problema de concurrencia que observamos es el disparo de todas las transiciones al mismo tiempo lo que puede llevar a una inconsistencia en el marcado o a bloqueos en el sistema, esto lo evitamos mediante el uso de un monitor de concurrencia, logrando así que el disparo de las transiciones sea controlado, garantizando el buen funcionamiento del sistema. 
 
 #### 2.2 Modelado del Sistema en Red de Petri
-![alt text](img/fig1.png "Modelo de Red de Petri para CPU de Dos Núcleos")
-Figura-01. Modelo de Red de Petri para CPU de Dos Núcleos
+![](img/fig1.png)
+*Figura-01. Modelo de Red de Petri para CPU de Dos Núcleos*
+
+
 
 ##### 2.2.2 Propiedades
 
@@ -44,7 +46,7 @@ La Red de Petri utilizada cuenta con una serie de propiedades, enunciadas a cont
 Realizando un análisis de propiedades por medio de la herramienta Petrinator se obtuvo:
 
 ![alt text](img/fig2.png "Propiedades ")
-Figura-02. Propiedades 
+*Figura-02. Propiedades* 
 
 
 #### 2.3 Invariantes
@@ -61,17 +63,17 @@ programa verifica en cada disparo que se están cumpliendo las invariantes de pl
 Realizando un análisis de estos con la herramienta Petrinator obtenemos los siguiente:
 
 ![alt text](img/fig3.png "Figura-03")
-
-Figura-03 
+*Figura-03* 
 ![alt text](img/fig4.png "Figura-04")
-Figura-04.
+*Figura-04.*
 
 ##### 2.3.2 Invariantes de transición o T-invariantes: 
 
 Un T-invariante indica un posible bucle en la red, es decir, una secuencia de transiciones cuyo efecto neto es nulo, es decir que conduce de nuevo a la marca en que comienza. Para la verificación de los T-invariantes se utiliza un procedimiento similar que para los P-invariantes, es decir, cuando se dispara una transición, se verifica si esta pertenece a un T-invariante y se determina si esta se disparó en el orden secuencial correspondiente a dicho T-invariante.
 Realizando el mismo análisis con Petrinator:
+
 ![alt text](img/fig5.png "Figura-05")
-Figura-05.
+*Figura-05.*
 
 Se pueden observar los siguientes T-invariantes:
     • {T0, T10, T11, T12, T14, T2, T9}
@@ -115,7 +117,8 @@ En el caso c se considera la misma ejecución con los mismos parámetros pero co
 
 
 **a)** Ambos núcleos con el mismo tiempo de “service_rate”.
-![alt text](img/plot1.png "Plot1")
+![Titulo2](img/plot1.png "Plot1")
+*Plot1*
 
 
 Ambos núcleos tienen un tiempo de procesamiento de 30 milisegundos y el arrival rate de las tareas es de 10 ms.
@@ -129,6 +132,7 @@ Tareas procesadas por el NÚCLEO 2 : 500
 
 **b)** Un núcleo con el doble de tiempo de “service_rate” que el otro
 ![alt text](img/plot2.png "Plot2")
+*Plot2*
 
 
 El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 60 milisegundos y el arrival rate de las tareas es de 10 ms.
@@ -144,6 +148,7 @@ Duración total del programa: 25 segundos.
 
 **c)** Un núcleo con el triple de tiempo de “service_rate” que el otro
 ![alt text](img/plot3.png "Plot3")
+*Plot3*
 
 
 El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 90 milisegundos y el arrival rate de las tareas es de 10 ms.
@@ -159,6 +164,7 @@ A continuación se repetirá el mismo experimento pero utilizando un procesador 
 *Processor Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz,2712 Mhz, 2 Core(s), 4 Logical Processor(s)*
 
 ![alt text](img/plot4.png "Plot4")
+*Plot4*
 
 
 
@@ -168,6 +174,8 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 *Caso: 10 ms llegada de tareas, 5 ms de procesamiento buffer 1, 30 ms buffer 2*
 
 ![alt text](img/plot5.png "Plot5")
+*Plot5*
+
 
 Se puede observar que como el núcleo 1 procesa las tareas en 5 ms. En la mayoría de las ejecuciones del programa, las 1000 tareas serán procesadas por e’l ya que estara vacia debido a que el tiempo de procesamiento es la mitad del tiempo que tardan en llegar las tareas. 
 
