@@ -1,7 +1,8 @@
 Consigna:
-.Problemas de Concurrencia
+. Problemas de Concurrencia
 . Objetos  y Colecciones
-
+. el conflicto entre las transiciones sensibilizadas que alimentan los buffers de los núcleos, manteniendo la carga de la CPU equitativa.
+. Cantidad de Hilos.
 Marco Teorico:
 . Procesador mononucleo. 
 . Politica:
