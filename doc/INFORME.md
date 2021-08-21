@@ -108,18 +108,20 @@ Se procedió a realizar un diagrama de secuencias para un disparo exitoso de una
 
 *Diagrama de secuencia*
 
-##### 2.5.4 Ejecuciones
 
-Para este programa un hilo representa una transición, con el objetivo de que estas puedan ser disparadas
-concurrentemente. Aquellos grupos de transiciones cuya ejecución es siempre secuencial pueden ser agrupadas por un único hilo que las maneje.
 
-**Determinación de la cantidad de hilos:**
+##### 2.5.4 Determinación de la cantidad de hilos:
 
 La cantidad de hilos necesarios para la ejecución del programa fue determinada analizando los invariantes de plaza y de transiciones, de esta forma se establecieron los siguientes hilos:
-
 Para el P-invariante compuesto por las plazas P0 y P1, que denota el arribo de las tareas, a la transición que las une T1 le corresponde un hilo a la transición T1. El mismo procedimiento se realizó para los segmentos {P10, P11} y {P7, P8}, los cuales denotan el procesamiento de las tareas en cada uno de los núcleos, por ende le corresponde un hilo a las transiciones T2 y T3 y otro a las transiciones T5 y T6  ya que su ejecución es secuencial. En el caso del encendido de la CPU, el segmento {P2, P4, P5} forman parte de un P-invariante, por lo tanto, las transiciones T7, T9 y T10 que conectan estas plazas reciben un hilo.  Así se pudo contabilizar la cantidad de hilos necesarios para la ejecución del programa, teniendo en cuenta que aquellas transiciones que no participan de una ejecución secuencial se le asigna un hilo propio, obteniendo que se necesitan 8 hilos.
  
+##### 2.5.5 Ejecuciones
+
+Para este programa un hilo representa una transición, con el objetivo de que estas puedan ser disparadas
+concurrentemente. Aquellos grupos de transiciones cuya ejecución es siempre secuencial pueden ser agrupadas por un único hilo que las maneje. 
+
 Además, se realizaron  las siguientes ejecuciones con 1000 tareas completadas para cada caso:
+
 
 Consideraciones: Los resultados dependen del computador donde fueron realizadas principalmente debido a la cantidad de hilos utilizados (9) ya que los procesadores tienen un límite en la cantidad total de hilos que pueden ejecutarse simultáneamente.
 
@@ -128,7 +130,7 @@ En el caso c se considera la misma ejecución con los mismos parámetros pero co
  Finalmente se agregó una caso extra en donde un núcleo tiene menor tiempo de procesamiento en comparación con el tiempo de llegada de las tareas.
 
 
-**a)** Ambos núcleos con el mismo tiempo de “service_rate”.
+##### 2.5.5.1 **a)** Ambos núcleos con el mismo tiempo de “service_rate”.
 
 ![Titulo2](img/plot1.png "Plot1")
 
@@ -144,7 +146,7 @@ Tareas procesadas por el NÚCLEO 1 : 500
 Tareas procesadas por el NÚCLEO 2 : 500
 
 
-**b)** Un núcleo con el doble de tiempo de “service_rate” que el otro
+##### 2.5.5.2 **b)** Un núcleo con el doble de tiempo de “service_rate” que el otro
 
 ![alt text](img/plot2.png "Plot2")
 
@@ -162,7 +164,7 @@ Duración total del programa: 25 segundos.
 
 
 
-**c)** Un núcleo con el triple de tiempo de “service_rate” que el otro
+##### 2.5.5.3 **c)** Un núcleo con el triple de tiempo de “service_rate” que el otro
 
 ![alt text](img/plot3.png "Plot3")
 
@@ -177,7 +179,7 @@ Duración total del programa: 34 segundos.
     • Tareas procesadas por el NÚCLEO 1 : 615
     • Tareas procesadas por el NÚCLEO 2 : 385
 
-A continuación se repetirá el mismo experimento pero utilizando un procesador diferente.
+##### 2.5.5.4 A continuación se repetirá el mismo experimento pero utilizando un procesador diferente.
 
 *Processor Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz,2712 Mhz, 2 Core(s), 4 Logical Processor(s)*
 
