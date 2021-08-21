@@ -103,7 +103,10 @@ Para la resolución de conflictos se utilizó la política solicitada para el tr
 ##### 2.5.3 Diagrama de Secuencias
 
 Se procedió a realizar un diagrama de secuencias para un disparo exitoso de una de las transiciones que alimenta a uno de los buffers de la CPU, mostrando el uso de la política.
-Se muestra en el anexo B.
+
+![alt text](img/DiagramaDeSecuencia.jpg "Diagrama de Clases")
+
+*Diagrama de secuencia*
 
 ##### 2.5.4 Ejecuciones
 
@@ -222,12 +225,9 @@ Como la lista final de disparos queda vacía al extraerle los conjuntos de invar
 ### 3. Conclusión
 Con el presente trabajo pudimos apreciar cómo las redes de Petri temporales simulan eficazmente la realidad estudiada. También pudimos ver que el estudio de los invariantes de la misma nos permite determinar con exactitud la cantidad de hilos necesarios para poder llevar a cabo las acciones ejecutadas por el sistema.
 
-### 4. Anexo
 
 
-B)Diagrama de secuencia
 
-![alt text](img/DiagramaDeSecuencia.jpg "Diagrama de Clases")
 
 
 
