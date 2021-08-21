@@ -3,8 +3,13 @@ Consigna:
 . Objetos  y Colecciones
 . el conflicto entre las transiciones sensibilizadas que alimentan los buffers de los núcleos, manteniendo la carga de la CPU equitativa.
 . Cantidad de Hilos.
+. explicacion de las clases:
+. explicacion del diagrama de Secuencia
 Marco Teorico:
 . Procesador mononucleo. 
 . Politica:
 . Transicion Temporizada:
 . Propiedades:
+. Invariante de Plaza:
+. invariante de Transicion
+.
