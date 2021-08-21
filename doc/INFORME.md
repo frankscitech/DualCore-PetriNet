@@ -202,20 +202,20 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 Se puede observar que como el núcleo 1 procesa las tareas en 5 ms. En la mayoría de las ejecuciones del programa, las 1000 tareas serán procesadas por e’l ya que estara vacia debido a que el tiempo de procesamiento es la mitad del tiempo que tardan en llegar las tareas. 
 
 
-##### 2.5.4.1 Verificacion de los invariantes
+##### 2.5.6 Verificacion de los invariantes
 
-**P-Invariantes**
+##### P-Invariantes
 
 Cada vez que se realiza el disparo de una transición se calcula el nuevo marcado y luego se verifica el cumplimiento de los P-invariantes mediante el uso de las ecuaciones de P-Invariantes especificadas anteriormente. En caso de violar alguna ecuación el programa  imprime: “NO SE CUMPLIO UN P-INVARIANTE” en la consola y en el log. Luego tira una excepción finalizando así el programa.
 Como tal mensaje no aparece en el log se concluye que se cumplen las ecuaciones de los P-Invariantes.
 
 
-**T-Invariantes**
+##### T-Invariantes
 
 Al finalizar el programa, se verificaron los T-invariantes de la siguiente manera: se almacenaron todos los disparos en una lista y luego para cada conjunto de T-Invariantes, si la lista de disparos contiene el mismo conjunto, se procedió a borrar el conjunto de la lista. Se repitió este procedimiento hasta que la lista de disparos no contenga un conjunto de disparos que sea igual a algún conjunto de T-invariante.
 
 
-Verificación de los T-Invariantes (resultado):
+ ##### Verificación de los T-Invariantes (resultado):
 
 *Disparos restantes luego de remover los tinv:
 Total de T-invariantes borrados: 1000*
