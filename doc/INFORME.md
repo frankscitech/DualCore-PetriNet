@@ -1,4 +1,4 @@
-## Modelado y Simulación de CPU Dual-Core en Red de Petri y JAVA
+# Modelado y Simulación de CPU Dual-Core en Red de Petri y JAVA
 Programación Concurrente 
 Departamento de Computación
 Facultad de Ciencias Exactas, Físicas y Naturales
@@ -9,24 +9,24 @@ Bastida, Lucas Ramiro - lucasbastidacba@gmail.com
 Miranda, Noelia - naylenmiranda@gmail.com
 Molina, Franco Elías - francoeliasmolina@gmail.com
 Palmiotti, Mauro Agustín  - mauropalmiotti@gmail.com
-### 1. Introducción
+## 1. Introducción
 
 El presente trabajo tiene por objetivo el control del procesamiento de tareas que realizan los núcleos de un procesador. Como punto de  partida se tomó la red de Petri que representaba a un procesador mono núcleo y se la extendió a una red que modele un procesador con dos núcleos. A continuación se modelo dicho sistema con objetos en Java, siempre teniendo en cuenta los requerimientos exigidos para el trabajo.
  
-### 2. Desarrollo
+## 2. Desarrollo
 
-#### 2.1 Problemas de concurrencia
+### 2.1 Problemas de concurrencia
 
 El principal problema de concurrencia que observamos es el disparo de todas las transiciones al mismo tiempo lo que puede llevar a una inconsistencia en el marcado o a bloqueos en el sistema, esto lo evitamos mediante el uso de un monitor de concurrencia, logrando así que el disparo de las transiciones sea controlado, garantizando el buen funcionamiento del sistema. 
 
-#### 2.2 Modelado del Sistema en Red de Petri
+### 2.2 Modelado del Sistema en Red de Petri
 ![](img/fig1.png)
 
 *Figura-01. Modelo de Red de Petri para CPU de Dos Núcleos*
 
 
 
-##### 2.2.2 Propiedades
+#### 2.2.2 Propiedades
 
 La Red de Petri utilizada cuenta con una serie de propiedades, enunciadas a continuación:
 
@@ -51,11 +51,11 @@ Realizando un análisis de propiedades por medio de la herramienta Petrinator se
 *Figura-02. Propiedades* 
 
 
-#### 2.3 Invariantes
+### 2.3 Invariantes
 
 Los invariantes permiten caracterizar ciertas propiedades de las marcas alcanzables y de las transiciones inalterables, independientemente de la evolución de la red. Se analizaran dos tipos de invariantes a continuación:
 
-##### 2.3.1 Invariantes de plaza o P-invariantes
+#### 2.3.1 Invariantes de plaza o P-invariantes
 
 Un P-invariante es una región de la red, un subconjunto de plazas, en donde el número de tokens permanece constante. Los tokens pueden moverse de una plaza a otra en la región, pero ninguno se crea ni desaparece.
 Para verificar que la cantidad de marcas se mantiene constante en el grupo de plazas involucradas en
@@ -72,7 +72,7 @@ Realizando un análisis de estos con la herramienta Petrinator obtenemos los sig
 
 *Figura-04.*
 
-##### 2.3.2 Invariantes de transición o T-invariantes: 
+#### 2.3.2 Invariantes de transición o T-invariantes: 
 
 Un T-invariante indica un posible bucle en la red, es decir, una secuencia de transiciones cuyo efecto neto es nulo, es decir que conduce de nuevo a la marca en que comienza. Para la verificación de los T-invariantes se utiliza un procedimiento similar que para los P-invariantes, es decir, cuando se dispara una transición, se verifica si esta pertenece a un T-invariante y se determina si esta se disparó en el orden secuencial correspondiente a dicho T-invariante.
 Realizando el mismo análisis con Petrinator:
@@ -87,20 +87,20 @@ Se pueden observar los siguientes T-invariantes:
 - {T0, T1, T3, T4, T6}
 - {T0, T1, T3, T4, T5, T7, T8}
 
-#### 2.4 Conflictos y Política de Resolución
+### 2.4 Conflictos y Política de Resolución
 
 Para la resolución de conflictos se utilizó la política solicitada para el trabajo, es decir, que la distribución de tareas entre los buffer sea equitativa. Para realizar esto, antes de disparar la transición que asigna los buffer se verifica la capacidad de los mismos para así determinar cuál será el buffer que reciba la tarea. En caso de que tengan la misma cantidad, las tareas se enviaran al buffer 1.
 
-#### 2.5 Modelado del Sistema con Objetos en  Java
+### 2.5 Modelado del Sistema con Objetos en  Java
 
-##### 2.5.1 Diagrama de Clases
+#### 2.5.1 Diagrama de Clases
 
 
 
 ![alt text](img/DiagramaDeClasesUML.jpeg "Diagrama de Clases")
 *Diagrama de clases*
 
-##### 2.5.3 Diagrama de Secuencias
+#### 2.5.3 Diagrama de Secuencias
 
 Se procedió a realizar un diagrama de secuencias para un disparo exitoso de una de las transiciones que alimenta a uno de los buffers de la CPU, mostrando el uso de la política.
 
@@ -110,12 +110,12 @@ Se procedió a realizar un diagrama de secuencias para un disparo exitoso de una
 
 
 
-##### 2.5.4 Determinación de la cantidad de hilos:
+#### 2.5.4 Determinación de la cantidad de hilos:
 
 La cantidad de hilos necesarios para la ejecución del programa fue determinada analizando los invariantes de plaza y de transiciones, de esta forma se establecieron los siguientes hilos:
 Para el P-invariante compuesto por las plazas P0 y P1, que denota el arribo de las tareas, a la transición que las une T1 le corresponde un hilo a la transición T1. El mismo procedimiento se realizó para los segmentos {P10, P11} y {P7, P8}, los cuales denotan el procesamiento de las tareas en cada uno de los núcleos, por ende le corresponde un hilo a las transiciones T2 y T3 y otro a las transiciones T5 y T6  ya que su ejecución es secuencial. En el caso del encendido de la CPU, el segmento {P2, P4, P5} forman parte de un P-invariante, por lo tanto, las transiciones T7, T9 y T10 que conectan estas plazas reciben un hilo.  Así se pudo contabilizar la cantidad de hilos necesarios para la ejecución del programa, teniendo en cuenta que aquellas transiciones que no participan de una ejecución secuencial se le asigna un hilo propio, obteniendo que se necesitan 8 hilos.
  
-##### 2.5.5 Ejecuciones
+#### 2.5.5 Ejecuciones
 
 Para este programa un hilo representa una transición, con el objetivo de que estas puedan ser disparadas
 concurrentemente. Aquellos grupos de transiciones cuya ejecución es siempre secuencial pueden ser agrupadas por un único hilo que las maneje. 
@@ -130,7 +130,7 @@ En el caso c se considera la misma ejecución con los mismos parámetros pero co
  Finalmente se agregó una caso extra en donde un núcleo tiene menor tiempo de procesamiento en comparación con el tiempo de llegada de las tareas.
 
 
-##### 2.5.5.1 **a)** Ambos núcleos con el mismo tiempo de “service_rate”.
+#### 2.5.5.1 **a)** Ambos núcleos con el mismo tiempo de “service_rate”.
 
 ![Titulo2](img/plot1.png "Plot1")
 
@@ -146,7 +146,7 @@ Tareas procesadas por el NÚCLEO 1 : 500
 Tareas procesadas por el NÚCLEO 2 : 500
 
 
-##### 2.5.5.2 **b)** Un núcleo con el doble de tiempo de “service_rate” que el otro
+#### 2.5.5.2 **b)** Un núcleo con el doble de tiempo de “service_rate” que el otro
 
 ![alt text](img/plot2.png "Plot2")
 
@@ -164,7 +164,7 @@ Duración total del programa: 25 segundos.
 
 
 
-##### 2.5.5.3 **c)** Un núcleo con el triple de tiempo de “service_rate” que el otro
+#### 2.5.5.3 **c)** Un núcleo con el triple de tiempo de “service_rate” que el otro
 
 ![alt text](img/plot3.png "Plot3")
 
@@ -179,7 +179,7 @@ Duración total del programa: 34 segundos.
     • Tareas procesadas por el NÚCLEO 1 : 615
     • Tareas procesadas por el NÚCLEO 2 : 385
 
-##### 2.5.5.4 A continuación se repetirá el mismo experimento pero utilizando un procesador diferente.
+#### 2.5.5.4 A continuación se repetirá el mismo experimento pero utilizando un procesador diferente.
 
 *Processor Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz,2712 Mhz, 2 Core(s), 4 Logical Processor(s)*
 
@@ -202,20 +202,20 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 Se puede observar que como el núcleo 1 procesa las tareas en 5 ms. En la mayoría de las ejecuciones del programa, las 1000 tareas serán procesadas por e’l ya que estara vacia debido a que el tiempo de procesamiento es la mitad del tiempo que tardan en llegar las tareas. 
 
 
-##### 2.5.6 Verificacion de los invariantes
+#### 2.5.6 Verificacion de los invariantes
 
-##### P-Invariantes
+#### P-Invariantes
 
 Cada vez que se realiza el disparo de una transición se calcula el nuevo marcado y luego se verifica el cumplimiento de los P-invariantes mediante el uso de las ecuaciones de P-Invariantes especificadas anteriormente. En caso de violar alguna ecuación el programa  imprime: “NO SE CUMPLIO UN P-INVARIANTE” en la consola y en el log. Luego tira una excepción finalizando así el programa.
 Como tal mensaje no aparece en el log se concluye que se cumplen las ecuaciones de los P-Invariantes.
 
 
-##### T-Invariantes
+#### T-Invariantes
 
 Al finalizar el programa, se verificaron los T-invariantes de la siguiente manera: se almacenaron todos los disparos en una lista y luego para cada conjunto de T-Invariantes, si la lista de disparos contiene el mismo conjunto, se procedió a borrar el conjunto de la lista. Se repitió este procedimiento hasta que la lista de disparos no contenga un conjunto de disparos que sea igual a algún conjunto de T-invariante.
 
 
- ##### Verificación de los T-Invariantes (resultado):
+#### Verificación de los T-Invariantes (resultado):
 
 *Disparos restantes luego de remover los tinv:
 Total de T-invariantes borrados: 1000*
@@ -224,7 +224,7 @@ Como la lista final de disparos queda vacía al extraerle los conjuntos de invar
 
 
 
-### 3. Conclusión
+## 3. Conclusión
 Con el presente trabajo pudimos apreciar cómo las redes de Petri temporales simulan eficazmente la realidad estudiada. También pudimos ver que el estudio de los invariantes de la misma nos permite determinar con exactitud la cantidad de hilos necesarios para poder llevar a cabo las acciones ejecutadas por el sistema.
 
 
