@@ -5,6 +5,7 @@ Consigna:
 . Cantidad de Hilos.
 . explicacion de las clases:
 . explicacion del diagrama de Secuencia
+
 Marco Teorico:
 . Procesador mononucleo. 
 . Politica:
@@ -13,3 +14,8 @@ Marco Teorico:
 . Invariante de Plaza:
 . invariante de Transicion
 .
+
+Pos Preg:
+. cant de hilos ?. 
+. window ?.
+. varif de inf. 
