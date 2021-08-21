@@ -95,7 +95,10 @@ Para la resolución de conflictos se utilizó la política solicitada para el tr
 
 ##### 2.5.1 Diagrama de Clases
 
-Se muestra en el anexo A.
+
+
+![alt text](img/DiagramaDeClasesUML.jpeg "Diagrama de Clases")
+*Diagrama de clases*
 
 ##### 2.5.3 Diagrama de Secuencias
 
@@ -221,9 +224,6 @@ Con el presente trabajo pudimos apreciar cómo las redes de Petri temporales sim
 
 ### 4. Anexo
 
-A)Diagrama de clases
-
-![alt text](img/DiagramaDeClasesUML.jpeg "Diagrama de Clases")
 
 B)Diagrama de secuencia
 
