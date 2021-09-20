@@ -30,5 +30,6 @@ public class HiloGenerador implements Runnable {
             }
 
         }
+
     }
 }

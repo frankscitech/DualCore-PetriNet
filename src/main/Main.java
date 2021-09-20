@@ -5,6 +5,8 @@ import hilo.HiloGenerador;
 
 import java.io.IOException;
 
+
+
 public class Main {
     public static long startTime = System.nanoTime();
     public static void main(String[] args) throws IOException {
@@ -23,14 +25,13 @@ public class Main {
         Transicion[] secuencia8 = {Transicion.T13};
 
         Thread generadorDeTareas = new Thread(new HiloGenerador(Transicion.GENERAR_TAREA, monitor));
-
         Thread aBuffer1 = new Thread(new HiloAutomatico(secuencia1,monitor));
         Thread aBuffer2 = new Thread(new HiloAutomatico(secuencia2,monitor));
         Thread nucleoUno = new Thread(new HiloAutomatico(secuencia3, monitor));
         Thread nucleoDos = new Thread(new HiloAutomatico(secuencia4, monitor));
         Thread CPU1 = new Thread(new HiloAutomatico(secuencia5, monitor));
         Thread CPU2 = new Thread(new HiloAutomatico(secuencia7, monitor));
-        Thread disparaT7 = new Thread(new HiloAutomatico(secuencia6, monitor)); //cambiar nombre
+        Thread disparaT6 = new Thread(new HiloAutomatico(secuencia6, monitor)); //cambiar nombre
         Thread disparaT13 = new Thread(new HiloAutomatico(secuencia8, monitor));
 
         generadorDeTareas.start();
@@ -40,7 +41,7 @@ public class Main {
         nucleoDos.start();
         CPU1.start();
         CPU2.start();
-        disparaT7.start();
+        disparaT6.start();
         disparaT13.start();
     }
 }

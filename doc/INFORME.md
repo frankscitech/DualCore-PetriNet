@@ -242,5 +242,5 @@ Este trabajo además nos ha permitido ampliar el horizonte en el funcionamiento 
 - Ecuación de estado generalizada para redes de Petri no 
 autónomas y con distintos tipos de arcos. Dr. Ing. Orlando Micolini1, Geol. Marcelo Cebollada y Verdaguer1, Ing. Maximiliano Eschoyez, Ing. Luis Orlando Ventre1, Ing. Marcelo Ismael Schild.  Laboratorio de Arquitectura de Computadoras (LAC) FCEFyN  Universidad Nacional de Córdoba.
 
-
+tiempo, termine
 

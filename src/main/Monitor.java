@@ -3,6 +3,8 @@ package main;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
+import java.util.Arrays;
+
 public class Monitor {
 
     private static final int numeroTransiciones = 15;
@@ -34,6 +36,7 @@ public class Monitor {
             } else {
                 System.out.println(Thread.currentThread().getName() + "\t no logro disparar " + transicion + " -> encolando");
                 colas.await(transicion);
+                System.out.println("vectorCola =" + Arrays.toString(colas.quienesEstan()) );
             }
             mutex.acquire();
         }
