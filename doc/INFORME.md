@@ -20,9 +20,9 @@ El presente trabajo tiene por objetivo el control del procesamiento de tareas qu
 El principal problema de concurrencia que observamos es el disparo de todas las transiciones al mismo tiempo lo que puede llevar a una inconsistencia en el marcado o a bloqueos en el sistema, esto lo evitamos mediante el uso de un monitor de concurrencia, logrando así que el disparo de las transiciones sea controlado, garantizando el buen funcionamiento del sistema. 
 
 ### 2.2 Modelado del Sistema en Red de Petri
-![](img/fig1.png)
+![](img/petrinet2.png)
 
-*Figura-01. Modelo de Red de Petri para CPU de Dos Núcleos*
+*Figura 2.2.1. Modelo de Red de Petri para CPU de Dos Núcleos*
 
 
 
@@ -48,7 +48,7 @@ Realizando un análisis de propiedades por medio de la herramienta Petrinator se
 
 ![alt text](img/fig2.png "Propiedades ")
 
-*Figura-02. Propiedades* 
+*Figura 2.2.2.1. Propiedades* 
 
 
 ### 2.3 Invariantes
@@ -113,31 +113,36 @@ Se procedió a realizar un diagrama de secuencias para un disparo exitoso de una
 #### 2.5.4 Determinación de la cantidad de hilos:
 
 La cantidad de hilos necesarios para la ejecución del programa fue determinada analizando los invariantes de plaza y de transiciones, de esta forma se establecieron los siguientes hilos:
-Para el P-invariante compuesto por las plazas P0 y P1, que denota el arribo de las tareas, a la transición que las une T1 le corresponde un hilo a la transición T1. El mismo procedimiento se realizó para los segmentos {P10, P11} y {P7, P8}, los cuales denotan el procesamiento de las tareas en cada uno de los núcleos, por ende le corresponde un hilo a las transiciones T2 y T3 y otro a las transiciones T5 y T6  ya que su ejecución es secuencial. En el caso del encendido de la CPU, el segmento {P2, P4, P5} forman parte de un P-invariante, por lo tanto, las transiciones T7, T9 y T10 que conectan estas plazas reciben un hilo.  Así se pudo contabilizar la cantidad de hilos necesarios para la ejecución del programa, teniendo en cuenta que aquellas transiciones que no participan de una ejecución secuencial se le asigna un hilo propio, obteniendo que se necesitan 8 hilos.
- 
+Para el P-invariante compuesto por las plazas {P0 , P1}, que denota el arribo de las tareas, a la transición que las une T0 le corresponde un hilo a la transición T0. El mismo procedimiento se realizó para los segmentos {P4, P3} y {P10, P11}, los cuales denotan el procesamiento de las tareas en cada uno de los núcleos, por ende le corresponde un hilo a las transiciones T3 y T4 y otro a las transiciones T9 y T10  ya que su ejecución es secuencial. En el caso del encendido de la CPU, el segmento {P5, P7, P8} forman parte de un P-invariante, por lo tanto, las transiciones T5, T7 y T8 que conectan estas plazas reciben un hilo.  Así se pudo contabilizar la cantidad de hilos necesarios para la ejecución del programa, teniendo en cuenta que aquellas transiciones que no participan de una ejecución secuencial se le asigna un hilo propio, obteniendo que se necesitan **9 hilos**.
+
+![alt text](img/petrinet3.png "Hilos")
+
+*Figura X.X . Modelo de Red de Petri, en rojo los hilos dado los Invariantes de Plaza, en anaranjado los hilos extras.*
+
 #### 2.5.5 Ejecuciones
 
-Para este programa un hilo representa una transición, con el objetivo de que estas puedan ser disparadas
-concurrentemente. Aquellos grupos de transiciones cuya ejecución es siempre secuencial pueden ser agrupadas por un único hilo que las maneje. 
+Para este programa un hilo representa una transición, con el objetivo de que estas puedan ser disparadas concurrentemente. Aquellos grupos de transiciones cuya ejecución es siempre secuencial pueden ser agrupadas por un único hilo que las maneje. 
 
-Además, se realizaron  las siguientes ejecuciones con 1000 tareas completadas para cada caso:
+Además, se realizaron  las siguientes ejecuciones con **1000 tareas** completadas para cada caso:
 
 
 Consideraciones: Los resultados dependen del computador donde fueron realizadas principalmente debido a la cantidad de hilos utilizados (9) ya que los procesadores tienen un límite en la cantidad total de hilos que pueden ejecutarse simultáneamente.
 
-En el caso c se considera la misma ejecución con los mismos parámetros pero con un procesador de 2 núcleos y 2 hilos por núcleo: Processor Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz, 2712 Mhz, 2 Core(s), 4 Logical Processor(s).
+En el caso c se considera la misma ejecución con los mismos parámetros pero con un procesador de 2 núcleos y 2 hilos por núcleo: Processor **Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz, 2712 Mhz, 2 Core(s), 4 Logical Processor(s).**
+
+Los núcleos físicos son la cantidad componentes de hardware reales. Los núcleos lógicos son el número de núcleos físicos multiplicado por el número de subprocesos que pueden ejecutarse en cada núcleo mediante el uso de hyperthreading.
 
  Finalmente se agregó una caso extra en donde un núcleo tiene menor tiempo de procesamiento en comparación con el tiempo de llegada de las tareas.
 
 
 #### 2.5.5.1 **a)** Ambos núcleos con el mismo tiempo de “service_rate”.
 
-![Titulo2](img/plot1.png "Plot1")
+![Titulo2](img/plot1.png "Figura X.X")
 
-*Plot1*
+*Figura X.X. Evolución de la Cantidad de Tareas Procesadas en ambos nucleos en función del tiempo. Ambos núcleos tienen un tiempo de procesamiento de 30 milisegundos y el arrival rate de las tareas es de 10 ms.*
 
 
-Ambos núcleos tienen un tiempo de procesamiento de 30 milisegundos y el arrival rate de las tareas es de 10 ms.
+
 
 Todas las tareas deberían llegar aproximadamente en 10 segundos debido a que son 1000 tareas con 10ms. Se puede observar la distribución equitativa de las tareas en los buffer, así como también se mantiene equitativa la cantidad de tareas procesadas por cada núcleo a causa de que ambos tienen el mismo tiempo de procesamiento. 
 
@@ -148,12 +153,12 @@ Tareas procesadas por el NÚCLEO 2 : 500
 
 #### 2.5.5.2 **b)** Un núcleo con el doble de tiempo de “service_rate” que el otro
 
-![alt text](img/plot2.png "Plot2")
+![alt text](img/plot2.png "Figura X.X")
 
-*Plot2*
+*Figura X.X .El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 60 milisegundos y el arrival rate de las tareas es de 10 ms.*
 
 
-El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 60 milisegundos y el arrival rate de las tareas es de 10 ms.
+
 
 En este caso se dispuso que el núcleo uno tenga el doble de tiempo de procesamiento que el núcleo dos, a causa de esto observamos nuevamente una distribución equitativa de tareas entre los buffer, pero no ocurre así con las tareas procesadas por cada núcleo. Se puede observar que el núcleo con menor tiempo lleva mayor cantidad de tareas procesadas, la tasa de cambio del buffer 2 es el doble que la tasa de cambio del buffer 1.
 
@@ -168,10 +173,10 @@ Duración total del programa: 25 segundos.
 
 ![alt text](img/plot3.png "Plot3")
 
-*Plot3*
+*Figura X.X . El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 90 milisegundos y el arrival rate de las tareas es de 10 ms.*
 
 
-El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 90 milisegundos y el arrival rate de las tareas es de 10 ms.
+
 
 En este último caso, en el que el tiempo de procesamiento del núcleo uno es el triple que el del núcleo dos, se sigue observando una distribución equitativa entre los buffer, pero en el caso de las tareas procesadas por cada núcleo se puede observar que no se procesan equitativamente, la tasa de cambio del buffer 2 es el triple que la tasa de cambio del buffer 1.
 
@@ -202,7 +207,7 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 Se puede observar que como el núcleo 1 procesa las tareas en 5 ms. En la mayoría de las ejecuciones del programa, las 1000 tareas serán procesadas por e’l ya que estara vacia debido a que el tiempo de procesamiento es la mitad del tiempo que tardan en llegar las tareas. 
 
 
-#### 2.5.6 Verificacion de los invariantes
+#### 2.5.6 Verificación de los invariantes
 
 #### P-Invariantes
 
@@ -225,13 +230,17 @@ Como la lista final de disparos queda vacía al extraerle los conjuntos de invar
 
 
 ## 3. Conclusión
-Con el presente trabajo pudimos apreciar cómo las redes de Petri temporales simulan eficazmente la realidad estudiada. También pudimos ver que el estudio de los invariantes de la misma nos permite determinar con exactitud la cantidad de hilos necesarios para poder llevar a cabo las acciones ejecutadas por el sistema.
 
+Tras la realización del presente trabajo de pudieron extraer numerosas conclusiones, se aprendió a **identificar**  los problemas de concurrencia surgen en el dominio de poblemas, 
+se aprendió a razonar en un paradigma de programación distinto al de la programación secuencial, asi como explotar las ventajas del multiprocesamiento, 
+se aprendió a **modelar** una solucion mediante el uso de redes de petri temporales aprovechando sus ventajas tales  como la representacion grafica, su ecuación de estados generalizada, sus invariantes, su escalabilidad, pero asi tambien se pudo evidenciar sus limitaciones como (...). 
+Además de apredió a **implementar** dicho modelo, mediante el uso de progrmacion orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers en . Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
+Este trabajo además nos ha permitido ampliar el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes 
 
+## 4. Bibligrafía
 
-
-
-
+- Ecuación de estado generalizada para redes de Petri no 
+autónomas y con distintos tipos de arcos. Dr. Ing. Orlando Micolini1, Geol. Marcelo Cebollada y Verdaguer1, Ing. Maximiliano Eschoyez, Ing. Luis Orlando Ventre1, Ing. Marcelo Ismael Schild.  Laboratorio de Arquitectura de Computadoras (LAC) FCEFyN  Universidad Nacional de Córdoba.
 
 
 

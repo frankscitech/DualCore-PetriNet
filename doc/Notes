@@ -19,3 +19,58 @@ Pos Preg:
 . cant de hilos ?. 
 . window ?.
 . varif de inf. 
+
+
+
+
+Clases :    
+
+
+-------------------------------------------------
+. Main: Clase Principal, instancia el logfilemanager, el monitor, arrays de un  tipo enum llamado Trancisiones. 
+
+. LFM: Es la clase que ace de interfaz para escribr los datos los log.txt. 
+
+. Monitor: La politica, la RDP, el Sem.
+
+. Main: Se definen Arrays de tipos Enum llamadas Trancisiones,  Cada array corresponde a una secuencua de transciones, por ejemplo la secuancia 5 
+corresponde a tres enum, el 5  7 8. 
+Para cado uno de los arrays de trnasiciones , creamons hilos mediante la clase Hilo Automatico que implementa Runnable, le pasamos como parametro el monitor.
+Tenemos un Hilo extra, que será encargado de generar las tareas. 
+Por ultimo le damos start a todos los hilos. 
+------------------------------------------------
+. Hilo Generador: Recibe la seuencia de trnasiciones, recibe el monitor. Hace un overwrite al metodo run e intenta el monitor dispare una detereminada trnasicon (En este caso GENERAR TAREA) una cantidad total igual a las tareas a procesar. 
+----------------------------------------------
+. Hilo Automatico: Similar ... Con la diferencia que esta todo el tiempo intentando disparar una determinada sequencia de disparos. s
+---------------------------------------------
+. Monitor Brief:  Instancia un semaforo, una clase colas, una clase politica, la clase RDP, dos buffers. E Implementa el metodo ddisparar Transicion. 
+
+
+
+. dispararTransicion(): 
+Adquiero un Permiso Disponible, si lo esta se decrement la cantidad de permisos, si no lo está el hilo se bloquea.
+Si es que la Transicion no se peude diparar, entonces si es temporizada se duerme (...) y si no se encola. 
+Encola: Es decir, 
+vectorCola: Representa aquiella transiciones que está encoladas. 
+vectorSens: Representa a quella trnasciones que estan sencibilidazas. 
+Si hay almenos un vector sensiblidao en la cola,m=1 si no m=0;
+polica.cual() me dice que hilo despertar, con el colas signals lo despierto.
+dispararTransicion(Transicion transicion)
+
+. Semaforo: Creo un semaforo con un valor inicial a uno (Con un unico permiso inicla), y que sea fair (FIFO). 
+
+----------------------------------------------------------------------------
+
+Clase RDP:
+
+. disparar():
+Si esta sensisblizada, se actualiza el marcado, 
+NM = MA[] + INPOS[]-INPRE[]
+,ceaueo los invariantes de Plaza (opt),
+si se disparo una tempoarizada, reseteo el timestamp, 
+
+
+
+
+
+
