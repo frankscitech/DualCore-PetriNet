@@ -1,14 +1,17 @@
 # Modelado y Simulación de CPU Dual-Core en Red de Petri y JAVA
-Programación Concurrente 
-Departamento de Computación
-Facultad de Ciencias Exactas, Físicas y Naturales
-Universidad Nacional de Córdoba
-2019
+<center>
+Programación Concurrente <br>
+Departamento de Computación <br>
+Facultad de Ciencias Exactas, Físicas y Naturales <br>
+Universidad Nacional de Córdoba <br>
+2019 <br>
 
-Bastida, Lucas Ramiro - lucasbastidacba@gmail.com
-Miranda, Noelia - naylenmiranda@gmail.com
-Molina, Franco Elías - francoeliasmolina@gmail.com
-Palmiotti, Mauro Agustín  - mauropalmiotti@gmail.com
+Bastida, Lucas Ramiro - lucasbastidacba@gmail.com 
+Miranda, Noelia - naylenmiranda@gmail.com 
+Molina, Franco Elías - francoeliasmolina@gmail.com 
+Palmiotti, Mauro Agustín  - mauropalmiotti@gmail.com 
+</center>
+
 ## 1. Introducción
 
 El presente trabajo tiene por objetivo el control del procesamiento de tareas que realizan los núcleos de un procesador. Como punto de  partida se tomó la red de Petri que representaba a un procesador mono núcleo y se la extendió a una red que modele un procesador con dos núcleos. A continuación se modelo dicho sistema con objetos en Java, siempre teniendo en cuenta los requerimientos exigidos para el trabajo.
@@ -45,10 +48,13 @@ La Red de Petri utilizada cuenta con una serie de propiedades, enunciadas a cont
 
 
 Realizando un análisis de propiedades por medio de la herramienta Petrinator se obtuvo:
+<center>
+<img src="img/fig2.png"><br>
+<span>Figura 2.2.2.1. Propiedades</span>
+</center>
 
-![alt text](img/fig2.png "Propiedades ")
 
-*Figura 2.2.2.1. Propiedades* 
+ 
 
 
 ### 2.3 Invariantes
