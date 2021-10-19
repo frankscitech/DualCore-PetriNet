@@ -231,16 +231,18 @@ Como la lista final de disparos queda vacía al extraerle los conjuntos de invar
 
 ## 3. Conclusión
 
-Tras la realización del presente trabajo de pudieron extraer numerosas conclusiones, se aprendió a **identificar**  los problemas de concurrencia surgen en el dominio de poblemas, 
-se aprendió a razonar en un paradigma de programación distinto al de la programación secuencial, asi como explotar las ventajas del multiprocesamiento, 
-se aprendió a **modelar** una solucion mediante el uso de redes de petri temporales aprovechando sus ventajas tales  como la representacion grafica, su ecuación de estados generalizada, sus invariantes, su escalabilidad, pero asi tambien se pudo evidenciar sus limitaciones como (...). 
-Además de apredió a **implementar** dicho modelo, mediante el uso de progrmacion orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers en . Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
-Este trabajo además nos ha permitido ampliar el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes 
+Tras la realización del presente trabajo de pudieron extraer numerosas conclusiones, se aprendió a **identificar**  los problemas de concurrencia que surgen en el dominio de poblema.
+Se aprendió a razonar en un paradigma de programación distinto al de la programación secuencial, asi como explotar las ventajas del multiprocesamiento.
+Se aprendió a **modelar** una solucion mediante el uso de redes de petri temporales aprovechando sus ventajas tales  como la representacion grafica, su ecuación de estados generalizada, sus invariantes, su escalabilidad, pero asi tambien se pudo evidenciar sus limitaciones como (...). 
+Además de apredió a **implementar** dicho modelo, mediante el uso de programación orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers. Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
+Este trabajo además nos ha permitido **ampliar** el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes.
 
 ## 4. Bibligrafía
 
-- Ecuación de estado generalizada para redes de Petri no 
-autónomas y con distintos tipos de arcos. Dr. Ing. Orlando Micolini1, Geol. Marcelo Cebollada y Verdaguer1, Ing. Maximiliano Eschoyez, Ing. Luis Orlando Ventre1, Ing. Marcelo Ismael Schild.  Laboratorio de Arquitectura de Computadoras (LAC) FCEFyN  Universidad Nacional de Córdoba.
+- *Ecuación de estado generalizada para redes de Petri no 
+autónomas y con distintos tipos de arcos. Dr. Ing. Orlando Micolini1, Geol. Marcelo Cebollada y Verdaguer1, Ing. Maximiliano Eschoyez, Ing. Luis Orlando Ventre1, Ing. Marcelo Ismael Schild.  Laboratorio de Arquitectura de Computadoras (LAC) FCEFyN  Universidad Nacional de Córdoba*.
+- https://docs.oracle.com/javase/7/docs/api/
 
-tiempo, termine
+
+
 
