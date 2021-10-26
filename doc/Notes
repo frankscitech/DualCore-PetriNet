@@ -18,7 +18,7 @@ Marco Teorico:
 Pos Preg:
 . cant de hilos ?. 
 . window ?.
-. varif de inf. 
+. varif de inv. 
 
 
 
@@ -71,6 +71,17 @@ si se disparo una tempoarizada, reseteo el timestamp,
 
 
 
+----------------------------------------------------------------------
 
 
+sleepAmount(i)=IntervalosTemporalesColumna0(i)-(TiempoSistemaEnVentanaDeTiempo(Ii)-TiempoSistemaEnSetTimeStamp(i))
 
+-----------------------------------------------------------------------
+
+Verificacion de los INvariantes:
+
+Matcher m = p.matcher(line); 
+
+contains 
+
+Para cada uno de los T einvariantes

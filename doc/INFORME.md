@@ -1,16 +1,19 @@
 # Modelado y Simulación de CPU Dual-Core en Red de Petri y JAVA
-<center>
-Programación Concurrente <br>
-Departamento de Computación <br>
-Facultad de Ciencias Exactas, Físicas y Naturales <br>
-Universidad Nacional de Córdoba <br>
-2019 <br>
+
+Programación Concurrente 
+Departamento de Computación 
+Facultad de Ciencias Exactas, Físicas y Naturales 
+Universidad Nacional de Córdoba 
+2019 
 
 Bastida, Lucas Ramiro - lucasbastidacba@gmail.com 
+
 Miranda, Noelia - naylenmiranda@gmail.com 
+
 Molina, Franco Elías - francoeliasmolina@gmail.com 
+
 Palmiotti, Mauro Agustín  - mauropalmiotti@gmail.com 
-</center>
+
 
 ## 1. Introducción
 
@@ -72,11 +75,11 @@ Realizando un análisis de estos con la herramienta Petrinator obtenemos los sig
 
 ![alt text](img/fig3.png "Figura-03")
 
-*Figura-03*
+*Figura-2.3.1.1*
  
 ![alt text](img/fig4.png "Figura-04")
 
-*Figura-04.*
+*Figura-2.3.1.2.*
 
 #### 2.3.2 Invariantes de transición o T-invariantes: 
 
@@ -85,7 +88,7 @@ Realizando el mismo análisis con Petrinator:
 
 ![alt text](img/fig5.png "Figura-05")
 
-*Figura-05.*
+*Figura.2.3.2.1.*
 
 Se pueden observar los siguientes T-invariantes:
 - {T0, T10, T11, T12, T14, T2, T9}
@@ -104,7 +107,7 @@ Para la resolución de conflictos se utilizó la política solicitada para el tr
 
 
 ![alt text](img/DiagramaDeClasesUML.jpeg "Diagrama de Clases")
-*Diagrama de clases*
+*Figura.2.5.1.1.Diagrama de clases*
 
 #### 2.5.3 Diagrama de Secuencias
 
@@ -112,7 +115,7 @@ Se procedió a realizar un diagrama de secuencias para un disparo exitoso de una
 
 ![alt text](img/DiagramaDeSecuencia.jpg "Diagrama de Clases")
 
-*Diagrama de secuencia*
+*Figura.2.5.3.1. Diagrama de secuencia*
 
 
 
@@ -123,7 +126,7 @@ Para el P-invariante compuesto por las plazas {P0 , P1}, que denota el arribo de
 
 ![alt text](img/petrinet3.png "Hilos")
 
-*Figura X.X . Modelo de Red de Petri, en rojo los hilos dado los Invariantes de Plaza, en anaranjado los hilos extras.*
+*Figura.2.5.4.1 . Modelo de Red de Petri, en rojo los hilos dado los Invariantes de Plaza, en anaranjado los hilos extras.*
 
 #### 2.5.5 Ejecuciones
 
@@ -145,7 +148,7 @@ Los núcleos físicos son la cantidad componentes de hardware reales. Los núcle
 
 ![Titulo2](img/plot1.png "Figura X.X")
 
-*Figura X.X. Evolución de la Cantidad de Tareas Procesadas en ambos nucleos en función del tiempo. Ambos núcleos tienen un tiempo de procesamiento de 30 milisegundos y el arrival rate de las tareas es de 10 ms.*
+*Figura.2.5.5.1.1. Evolución de la Cantidad de Tareas Procesadas en ambos nucleos en función del tiempo. Ambos núcleos tienen un tiempo de procesamiento de 30 milisegundos y el arrival rate de las tareas es de 10 ms.*
 
 
 
@@ -161,7 +164,7 @@ Tareas procesadas por el NÚCLEO 2 : 500
 
 ![alt text](img/plot2.png "Figura X.X")
 
-*Figura X.X .El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 60 milisegundos y el arrival rate de las tareas es de 10 ms.*
+*Figura.2.5.5.2.1 .El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 60 milisegundos y el arrival rate de las tareas es de 10 ms.*
 
 
 
@@ -179,7 +182,7 @@ Duración total del programa: 25 segundos.
 
 ![alt text](img/plot3.png "Plot3")
 
-*Figura X.X . El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 90 milisegundos y el arrival rate de las tareas es de 10 ms.*
+*Figura.2.5.5.3.1. El NÚCLEO 1 tiene un tiempo de procesamiento de 30 milisegundos, en cambio el NÚCLEO 2 tiene un tiempo de procesamiento de 90 milisegundos y el arrival rate de las tareas es de 10 ms.*
 
 
 
@@ -196,7 +199,7 @@ Duración total del programa: 34 segundos.
 
 ![alt text](img/plot4.png "Plot4")
 
-*Plot4*
+*Figura.2.5.5.4.1*
 
 
 
@@ -207,7 +210,7 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 
 ![alt text](img/plot5.png "Plot5")
 
-*Plot5*
+*Figura.2.5.5.4.2*
 
 
 Se puede observar que como el núcleo 1 procesa las tareas en 5 ms. En la mayoría de las ejecuciones del programa, las 1000 tareas serán procesadas por e’l ya que estara vacia debido a que el tiempo de procesamiento es la mitad del tiempo que tardan en llegar las tareas. 
@@ -239,7 +242,7 @@ Como la lista final de disparos queda vacía al extraerle los conjuntos de invar
 
 Tras la realización del presente trabajo de pudieron extraer numerosas conclusiones, se aprendió a **identificar**  los problemas de concurrencia que surgen en el dominio de poblema.
 Se aprendió a razonar en un paradigma de programación distinto al de la programación secuencial, asi como explotar las ventajas del multiprocesamiento.
-Se aprendió a **modelar** una solucion mediante el uso de redes de petri temporales aprovechando sus ventajas tales  como la representacion grafica, su ecuación de estados generalizada, sus invariantes, su escalabilidad, pero asi tambien se pudo evidenciar sus limitaciones como (...). 
+Se aprendió a **modelar** una solucion mediante el uso de redes de petri temporales aprovechando sus ventajas tales  como la representacion grafica, su ecuación de estados generalizada, sus invariantes, su escalabilidad, pero asi tambien se pudo evidenciar sus limitaciones en cuanto a complejidad. 
 Además de apredió a **implementar** dicho modelo, mediante el uso de programación orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers. Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
 Este trabajo además nos ha permitido **ampliar** el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes.
 

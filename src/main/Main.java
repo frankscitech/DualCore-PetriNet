@@ -8,9 +8,10 @@ import java.io.IOException;
 
 
 public class Main {
+    /* Useful to LogFileManager */
     public static long startTime = System.nanoTime();
     public static void main(String[] args) throws IOException {
-
+        
         LogFileManager log = new LogFileManager();
 
         Monitor monitor = new Monitor(log);

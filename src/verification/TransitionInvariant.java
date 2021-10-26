@@ -15,17 +15,18 @@ public class TransitionInvariant {
         LinkedList<Integer> disparos = new LinkedList<>();
         readDisparos(disparos, "log.txt");
         int totalRemoved = 0;
-
         int tinv[][] = {{0, 10, 11, 12, 14, 2, 9},
-                {0, 10, 13, 2, 9},
-                {0, 1, 3, 4, 6},
-                {0, 1, 3, 4, 5, 7, 8}};
+                        {0, 10, 13, 2, 9},
+                        {0, 1, 3, 4, 6},
+                        {0, 1, 3, 4, 5, 7, 8}};
 
         System.out.println("Todos los disparos realizados:");
         for (int i :
                 disparos) {
             System.out.println(i);
         }
+
+
 
         for (int[] ints : tinv) {
 
@@ -37,6 +38,7 @@ public class TransitionInvariant {
                 boolean deleteSet = true;
                 for (int trans = 0; trans < ints.length; trans++) {
                     if (!disparos.contains(ints[trans])) {
+                        //se rompe
                         deleteSet = false;
                         conjuntoEnDisparos = false;
                         break;
@@ -61,7 +63,9 @@ public class TransitionInvariant {
         System.out.println("Total de invariantes borrados: "+ totalRemoved);
 
     }
-
+    /*
+    Lee los disparos de del archivo, y los guarda en las listas disparos. 
+    */
     private static void readDisparos(List<Integer> disparos, String dir) {
         Pattern p = Pattern.compile("disparo=(\\d+)");
         BufferedReader reader;
