@@ -32,7 +32,7 @@ public class Main {
         Thread nucleoDos = new Thread(new HiloAutomatico(secuencia4, monitor));
         Thread CPU1 = new Thread(new HiloAutomatico(secuencia5, monitor));
         Thread CPU2 = new Thread(new HiloAutomatico(secuencia7, monitor));
-        Thread disparaT6 = new Thread(new HiloAutomatico(secuencia6, monitor)); //cambiar nombre
+        Thread disparaT6 = new Thread(new HiloAutomatico(secuencia6, monitor)); 
         Thread disparaT13 = new Thread(new HiloAutomatico(secuencia8, monitor));
 
         generadorDeTareas.start();
@@ -46,3 +46,8 @@ public class Main {
         disparaT13.start();
     }
 }
+
+
+
+
+
