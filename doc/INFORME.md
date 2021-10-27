@@ -1,9 +1,13 @@
 # Modelado y Simulación de CPU Dual-Core en Red de Petri y JAVA
 
 Programación Concurrente 
+
 Departamento de Computación 
+
 Facultad de Ciencias Exactas, Físicas y Naturales 
+
 Universidad Nacional de Córdoba 
+
 2019 
 
 Bastida, Lucas Ramiro - lucasbastidacba@gmail.com 
@@ -91,10 +95,10 @@ Realizando el mismo análisis con Petrinator:
 *Figura.2.3.2.1.*
 
 Se pueden observar los siguientes T-invariantes:
-- {T0, T10, T11, T12, T14, T2, T9}
+- {T0, T2, T11, T12, T9, T10, T14}
 - {T0, T10, T13, T2, T9}
 - {T0, T1, T3, T4, T6}
-- {T0, T1, T3, T4, T5, T7, T8}
+- {T0, T1, T5, T7, T3, T4, T8}
 
 ### 2.4 Conflictos y Política de Resolución
 
@@ -236,16 +240,60 @@ Total de T-invariantes borrados: 1000*
 
 Como la lista final de disparos queda vacía al extraerle los conjuntos de invariantes de transición o queda con un inicio de algún T-invariante,  se concluye que el programa funciona correctamente.
 
+```python
+import re
+''' 
+    param: name of file
+    return: disparos as string 
+    e.g:
+''' 
+def readFile(filename):
+    disparos=''
+    with open(filename, 'rt') as f:
+        data = f.readlines()
+    for line in data:
+        if line.__contains__('disparo'):
+            line_arr=line.split('=')
+            disparo=int(line_arr[1])
+            disparos+='T'+str(disparo)
+    return disparos
+
+if __name__ == "__main__":
+    filename='../../log.txt'
+    pattern = '(T0)(.*?)((T1)(.*?)(T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T2)(.*?)(T11)(.*?)(T12)(.*?)(T9)(.*?)(T10)(.*?)(T14)(.*?))'
+    #repl='\g<2>\g<5>\g<7>\g<9>\g<1>1\g<1>3\g<1>5\g<1>7\g<1>9\g<2>1\g<2>3\g<2>5\g<2>7'
+    #repl='\g<2>\g<5>\g<7>\g<9>\g<11>\g<13>\g<15>\g<17>\g<19>\g<21>\g<23>\g<25>\g<27>'
+    repl='[removed]'
+    string=readFile(filename)
+    line = re.subn(pattern, repl, string)
+    print(string)
+    print(line)
+```
+
+```bash
+$ cd src/verificacion
+$ python3 TransitionInvatiant.py
+```
+
 
 
 ## 3. Conclusión
 
 Tras la realización del presente trabajo de pudieron extraer numerosas conclusiones, se aprendió a **identificar**  los problemas de concurrencia que surgen en el dominio de poblema.
+
 Se aprendió a razonar en un paradigma de programación distinto al de la programación secuencial, asi como explotar las ventajas del multiprocesamiento.
 Se aprendió a **modelar** una solucion mediante el uso de redes de petri temporales aprovechando sus ventajas tales  como la representacion grafica, su ecuación de estados generalizada, sus invariantes, su escalabilidad, pero asi tambien se pudo evidenciar sus limitaciones en cuanto a complejidad. 
+
 Además de apredió a **implementar** dicho modelo, mediante el uso de programación orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers. Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
+
+Tambien hubo decisiones de diseños que vale la pena recalcar,  criterio de los hilos
+
 Este trabajo además nos ha permitido **ampliar** el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes.
 
+
+ revelar que deici.. a lo larg.. del trabja.. q impactaron..
+
+ func est, din ?
 ## 4. Bibligrafía
 
 - *Ecuación de estado generalizada para redes de Petri no 
