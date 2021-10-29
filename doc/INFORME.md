@@ -286,14 +286,12 @@ Se aprendió a **modelar** una solucion mediante el uso de redes de petri tempor
 
 Además de apredió a **implementar** dicho modelo, mediante el uso de programación orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers. Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
 
-Tambien hubo decisiones de diseños que vale la pena recalcar,  criterio de los hilos
+
+Tambien hubo decisiones de diseños que vale la pena recalcar, en un principio la cantidad de hilos fue menor, lo que generaba que el tiempo de ejecucion se fuera menor. Esto se ve claramente ejecutando el programa en euna computadora distinta, debido a  la limitación en el sistema ya que el procesador cuenta con 2 núcleos los cuales solo pueden procesar  cada uno simultáneamente y la cantidad de hilos utilizados en nuestro caso es de 9. Una solución para minimizar el lapso de tiempo sería la utilización de una menor cantidad de hilos. Tambien desarrollar el programa en un lenguaje como C, posiblemente mejore tambien los tiempos.
+
 
 Este trabajo además nos ha permitido **ampliar** el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes.
 
-
- revelar que deici.. a lo larg.. del trabja.. q impactaron..
-
- func est, din ?
 ## 4. Bibligrafía
 
 - *Ecuación de estado generalizada para redes de Petri no 
