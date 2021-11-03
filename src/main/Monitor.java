@@ -3,12 +3,14 @@ package main;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class Monitor {
 
     private static final int numeroTransiciones = 15;
     private static final int numeroPlazas = 16;
+    public  final int tareas;
+
 
     private Buffer buffer1 = new Buffer();
     private Buffer buffer2 = new Buffer();
@@ -17,10 +19,12 @@ public class Monitor {
     private Colas colas = new Colas(numeroTransiciones);
     private Politica politica = new Politica(buffer1, buffer2, numeroTransiciones);
     private RDP rdp;
+    private boolean checkeredFlag=false;
 
 
-    public Monitor(LogFileManager log) throws IOException {
+    public Monitor(LogFileManager log,int tareas) throws IOException {
         this.rdp = new RDP(log, buffer1, buffer2, numeroPlazas, numeroTransiciones);
+        this.tareas=tareas;
     }
 
     /*
@@ -36,10 +40,16 @@ public class Monitor {
 
     */
     public boolean dispararTransicion(Transicion transicion) throws InterruptedException, IOException {
-
+        if(checkeredFlag) return false;
         mutex.acquire();
-
         while (!rdp.disparar(transicion)) {
+            colas.printStatus();
+            if(progTerminaCon(transicion)){
+                System.out.println("-----------Ultimo hilo");
+                checkeredFlag=true;   
+                colas.releaseAll();
+                return false;
+            }
             mutex.release();
             if (transicion.esTemporizada()) {
                 System.out.println(Thread.currentThread().getName() + "\t no logro disparar " + transicion + " -> durmiendo: "+ rdp.sleepAmount[transicion.getValor()]);
@@ -49,19 +59,13 @@ public class Monitor {
                     rdp.sleepAmount[] es un array cuyo indice corresponde a una transicion y su contenido la cantidad a dormir. 
                 */
             } else {
-                System.out.println(Thread.currentThread().getName() + "\t no logro disparar " + transicion + " -> encolando");
-                colas.await(transicion);
-                System.out.println("vectorCola =" + Arrays.toString(colas.quienesEstan()) );
+                System.out.println(Thread.currentThread().getName() + "\t no logro disparar " + transicion + " -> encolando...");
+                colas.await(transicion);                
+                if(checkeredFlag) return false;
             }
             mutex.acquire();
         }
-
-
-
         System.out.println(Thread.currentThread().getName() + "\t disparo " + transicion);
-
-
-
         int[] vectorSens = rdp.sensibilizadas();
         int[] vectorCola = colas.quienesEstan();
         int m = funcionAND(vectorSens, vectorCola);
@@ -83,4 +87,18 @@ public class Monitor {
         }
         return 0;
     }
+
+    private boolean progTerminaCon(Transicion transicion){
+        boolean rdpStatus = rdp.finalStatus();
+        boolean colasStatus = colas.checkFinalStatus(transicion);
+        int tareasProcesadas= rdp.getTareas();
+        System.out.println("rdpStatus:" + rdpStatus +" colasStatus:"+ colasStatus );
+        if(colasStatus && rdpStatus && tareasProcesadas==tareas){
+            return true;
+        } else{
+            return false;
+        }
+    }
+   
+    
 }
