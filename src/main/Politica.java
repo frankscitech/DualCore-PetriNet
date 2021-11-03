@@ -25,6 +25,9 @@ public class Politica {
         int max = 0;
         int transicion = 0;
 
+        /**
+         * Creo un vector AND con aquella transiciones que  están sencibilizada, encoladas y no son temporizadas.
+         */
         for (Transicion t :
                 Transicion.values()) {
             if (vectorSens[t.getValor()] == 1 && vectorCola[t.getValor()] == 1 && !t.esTemporizada()) {
@@ -34,8 +37,14 @@ public class Politica {
             }
         }
 
-        //despertar segun tamaño buffer
+        /**
+         * Si la transicon TAREA_A_BUFFER_1/2 está sencibilizada y encolada.
+         * Despierta aquella correspondiente al procesador cuyo buffer está menos cargado.
+         */
         if (vectorAND[Transicion.TAREA_A_BUFFER_1.getValor()] == 1) {
+            if (buffer1.getEstado() == buffer2.getEstado()){
+                return (int)(Math.random()*2+1);
+            }
             if (buffer1.getEstado() > buffer2.getEstado()) {
                 return Transicion.TAREA_A_BUFFER_2.getValor();
             } else {
@@ -43,7 +52,10 @@ public class Politica {
             }
         }
 
-        //despertar cualquier otra sens
+        /**
+         * Si la transicon TAREA_A_BUFFER_1/2  NO está sencibilizada y encolada.
+         * Despierta una trasicion aleatoria con mayor valor de politica. 
+         */
         for (int i = 0; i < vectorSens.length; i++) {
             if (vectorAND[i] == 1 && politica[i] > max) {
                 max = politica[i];
