@@ -16,10 +16,11 @@ public class HiloAutomatico implements Runnable {
     }
 
     public void run() {
-        while (true) {
+        boolean keepGoing=true;
+        while (keepGoing) {
             for(Transicion transicion: secuenciaDeDisparos) {
                 try {
-                    monitor.dispararTransicion(transicion);
+                    keepGoing=monitor.dispararTransicion(transicion);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -27,5 +28,7 @@ public class HiloAutomatico implements Runnable {
                 }
             }
         }
+        System.out.println("["+ Thread.currentThread().getName()+ "          Terminado ]" );
+        
     }
 }
