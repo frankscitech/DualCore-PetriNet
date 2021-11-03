@@ -34,6 +34,10 @@ public class RDP {
     private Buffer buffer2;
     private LogFileManager log;
     private boolean pInv = true;
+    private final int finalSens[]={1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+   private final int finalSens2[]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private final int finalMark[]={1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0};
+
 
 
     public RDP(LogFileManager log, Buffer buffer1, Buffer buffer2, int numeroPlazas, int numeroTransiciones) throws IOException {
@@ -225,6 +229,20 @@ public class RDP {
 
     public int[] sensibilizadas() {
         return sensibilizadoExtendido;
+
+    }
+    public boolean finalStatus() {
+        if( Arrays.equals(marcadoActual,finalMark) && 
+            (Arrays.equals(sensibilizadoExtendido,finalSens)||Arrays.equals(sensibilizadoExtendido,finalSens2))
+            ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public int getTareas() {
+        return nucleo1+nucleo2;
     }
 
     private void checkProcesados(Transicion transicion) {
