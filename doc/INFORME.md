@@ -219,6 +219,26 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 
 Se puede observar que como el núcleo 1 procesa las tareas en 5 ms. En la mayoría de las ejecuciones del programa, las 1000 tareas serán procesadas por e’l ya que estara vacia debido a que el tiempo de procesamiento es la mitad del tiempo que tardan en llegar las tareas. 
 
+Por último. se agregan las siguientes observaciones: 
+
+ id| CPU |CPU Cores | CPU Threads| OnDemand | Tareas | Hilos |  Arrival Rate | Service Rate 1| Service Rate 2 |Tiempo Total| Tiempo Ideal | Gap |
+|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|0|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|1ms|10ms|10ms|6837ms|5000ms|36%|
+|1|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|10ms|10ms|11749ms|5000ms|134%|
+|2|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|10ms|10ms|10975ms|5000ms|119%|
+|3|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|20ms|20ms|10847ms|10000ms|8.5%|
+|4|Intel Core i7-3517U 1.90GHz|2|4|Si|3000|9|10ms|20ms|20ms|32699ms|30000ms|8.9%|
+|5|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|30ms|30ms|15541ms|15000ms|4%|
+|6|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|30ms|30ms|46527ms|45000ms|3.4%|
+|7|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|50ms|50ms|25501ms|25000ms|2%|
+|8|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|100ms|100ms|153339ms|150000ms|2%|
+|9|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|20ms|10ms|10ms|21322msms|20000ms|6.6%|
+
+
+Obervaciones: 
+ -  A medida que se incrementa la relación entre el Arrival Rate y los Service Rate, el gap se incrementa. 
+ -  Incrementar la cantidad de tareas tambien disminuye el gap. 
+
 
 #### 2.5.6 Verificación de los invariantes
 
@@ -261,8 +281,6 @@ def readFile(filename):
 if __name__ == "__main__":
     filename='../../log.txt'
     pattern = '(T0)(.*?)((T1)(.*?)(T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T2)(.*?)(T11)(.*?)(T12)(.*?)(T9)(.*?)(T10)(.*?)(T14)(.*?))'
-    #repl='\g<2>\g<5>\g<7>\g<9>\g<1>1\g<1>3\g<1>5\g<1>7\g<1>9\g<2>1\g<2>3\g<2>5\g<2>7'
-    #repl='\g<2>\g<5>\g<7>\g<9>\g<11>\g<13>\g<15>\g<17>\g<19>\g<21>\g<23>\g<25>\g<27>'
     repl='[removed]'
     string=readFile(filename)
     line = re.subn(pattern, repl, string)
@@ -286,9 +304,7 @@ Se aprendió a **modelar** una solucion mediante el uso de redes de petri tempor
 
 Además de apredió a **implementar** dicho modelo, mediante el uso de programación orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers. Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
 
-
 Tambien hubo decisiones de diseños que vale la pena recalcar, en un principio la cantidad de hilos fue menor, lo que generaba que el tiempo de ejecucion se fuera menor. Esto se ve claramente ejecutando el programa en euna computadora distinta, debido a  la limitación en el sistema ya que el procesador cuenta con 2 núcleos los cuales solo pueden procesar  cada uno simultáneamente y la cantidad de hilos utilizados en nuestro caso es de 9. Una solución para minimizar el lapso de tiempo sería la utilización de una menor cantidad de hilos. Tambien desarrollar el programa en un lenguaje como C, posiblemente mejore tambien los tiempos.
-
 
 Este trabajo además nos ha permitido **ampliar** el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes.
 
