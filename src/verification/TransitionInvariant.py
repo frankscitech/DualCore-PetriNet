@@ -12,39 +12,51 @@ def readFile(filename):
         if line.__contains__('disparo'):
             line_arr=line.split('=')
             disparo=int(line_arr[1])
-            disparos+='T'+str(disparo)
+            disparos+='T'+'{:X}'.format(disparo)
     return disparos 
 
-if __name__ == "__main__":
-    filename='./log.txt'
-    pattern = '(T0)(.*?)((T1)(.*?)(T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T2)(.*?)(T11)(.*?)(T12)(.*?)(T9)(.*?)(T10)(.*?)(T14)(.*?))'
-    #pattern='((T0)(.*?)((T1)(.*?)(T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T2)(.*?)(T11)(.*?)(T12)(.*?)(T9)(.*?)(T10)(.*?)(T14)(.*?)))|(T2)(.*?)(T11)(.*?)(T12)(.*?)(T9)(.*?)'
-    #pattern='(T0)(.*?)((T1)(.*?)((T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T6)(.*?)(T3)(.*?)(T4)(.*?))|(T2)(.*?)((T11)(.*?)(T12)(.*?)(T9)(.*?)(T10)(.*?)(T14)(.*?)|(T13)(.*?)(T9)(.*?)(T10)(.*?)))'
-    repl=' '
-    string=readFile(filename)
-    #string='T0T2T11T12T9T0T2T13T0T2T13T0T2T13T10T9T0T2T13T10T9T0T1T5T7T3T10T9T10T9T0T1T6T4T3T4T8T10T14T0T2T11T12T9T10T14T0T2T11T12T9T10T14T0T2T11T12T9T0T1T5T7T3T4T8T10T14T0T2T11T12T9T10T14T0T1T5T7T3T4T8T0T1T5T7T3T4T8T0T1T5T7T3T4T8T0T2T11T12T9T10T14'
-    line = re.subn(pattern, repl, string)
-    print(string)
-    print(line)
-
-
 '''
-    re.subn(pattern, repl, string, count=0, flags=0)
+    Run re.subn iterative
 
+    re.subn(pattern, repl, string, count=0, flags=0)
     brief:  Return the string obtained by replacing the leftmost non-overlapping occurrences of pattern 
             in string by the replacement repl. If the pattern isn’t found, string is returned unchanged.
     return: a tuple (new_string, number_of_subs_made).
-
-
-   '(T0)(.*?)
-       (
-       (T1)(.*?)(T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)
-       |
-       (T2)(.*?)
-            (
-            (T11)(.*?)(T12)(.*?)(T9)(.*?)(T10)(.*?)(T14)(.*?)
-            |
-            (T9)(.*?)(T10)(.*?)(T13)(.*?)(T10)
-            )
-       ) 
 '''
+def tinv_matcher():
+    logfilenameI='./log.txt'
+    logfilenameO='./logTinv.txt'
+    pattern='(T0)(.*?)((T1)(.*?)((T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T6)(.*?)(T3)(.*?)(T4)(.*?))|(T2)(.*?)((TB)(.*?)(TC)(.*?)(T9)(.*?)(TA)(.*?)(TE)(.*?)|(TD)(.*?)(T9)(.*?)(TA)(.*?)))'
+    repl='\g<2>\g<5>\g<8>\g<10>\g<12>\g<14>\g<16>\g<18>\g<20>\g<22>\g<24>\g<27>\g<29>\g<31>\g<33>\g<35>\g<37>\g<39>\g<41>'
+    string=''
+    terminate=False
+    iteration=0
+
+    # msg
+    print("Generating file : "+logfilenameO+" ...")
+
+    # Create logTinv.txt
+    logfile = open(logfilenameO, "a")
+    logfile.truncate(0)
+
+    # Disparos to string (i.e. T0T1T6T0T1T6T0T2T13T0T2T13T0T1T6...)
+    string=readFile(logfilenameI)
+    
+    while(not terminate):
+        print("Iteration: "+str(iteration))
+        line = re.subn(pattern, repl, string)
+        matches=int(line[1])
+        string=str(line[0])
+        leng=len(string)
+        logfile.write('ITERATION:{:>5} LENGHT:{:>6} MATCHES:{:>5}'.format(str(iteration), str(leng), str(matches))+" OUT:"+string+'\n')
+        iteration+=1
+        if not matches:
+            terminate=True
+    print("Check File !!! => "+logfilenameO)
+    logfile.write("\n MEMO T-INVARIANTS:\n{T0,T1,T5,T7,T3,T4,T8}\n{T0,T1,T6,T3,T4}\n{T0,T2,TB,TC,T9,TA,TE}\n{T0,T2,TD,T9,TA}")
+    logfile.close
+
+
+
+if __name__ == "__main__":
+    tinv_matcher()
