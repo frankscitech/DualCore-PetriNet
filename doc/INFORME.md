@@ -110,7 +110,7 @@ Para la resolución de conflictos se utilizó la política solicitada para el tr
 
 
 
-![alt text](img/DiagramaDeClasesUML.jpeg "Diagrama de Clases")
+![alt text](img/DiagramaDeClasesUML.png "Diagrama de Clases")
 *Figura.2.5.1.1.Diagrama de clases*
 
 #### 2.5.3 Diagrama de Secuencias
@@ -223,21 +223,24 @@ Por último. se agregan las siguientes observaciones:
 
  id| CPU |CPU Cores | CPU Threads| OnDemand | Tareas | Hilos |  Arrival Rate | Service Rate 1| Service Rate 2 |Tiempo Total| Tiempo Ideal | Gap |
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
-|0|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|1ms|10ms|10ms|6837ms|5000ms|36%|
-|1|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|10ms|10ms|11749ms|5000ms|134%|
-|2|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|10ms|10ms|10975ms|5000ms|119%|
-|3|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|20ms|20ms|10847ms|10000ms|8.5%|
-|4|Intel Core i7-3517U 1.90GHz|2|4|Si|3000|9|10ms|20ms|20ms|32699ms|30000ms|8.9%|
-|5|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|30ms|30ms|15541ms|15000ms|4%|
-|6|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|30ms|30ms|46527ms|45000ms|3.4%|
-|7|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|50ms|50ms|25501ms|25000ms|2%|
-|8|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|100ms|100ms|153339ms|150000ms|2%|
-|9|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|20ms|10ms|10ms|21322msms|20000ms|6.6%|
+|0|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|1ms|10ms|10ms|6837ms|5000ms|<span style="color: red;">36%</span>|
+|1|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|10ms|10ms|11749ms|5000ms|<span style="color: red;">134%</span>|
+|2|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|10ms|10ms|10975ms|5000ms|<span style="color: red;">119%</span>|
+|3|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|20ms|20ms|10847ms|10000ms|<span style="color: green;">8.5%</span>|
+|4|Intel Core i7-3517U 1.90GHz|2|4|Si|3000|9|10ms|20ms|20ms|32699ms|30000ms|<span style="color: green;">8.9%</span>|
+|5|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|30ms|30ms|15541ms|15000ms|<span style="color: green;">4%</span>|
+|6|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|30ms|30ms|46527ms|45000ms|<span style="color: green;">3.4%</span>|
+|7|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|50ms|50ms|25501ms|25000ms|<span style="color: green;">2%</span>|
+|8|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|100ms|100ms|153339ms|150000ms|<span style="color: green;">2%</span>|
+|9|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|20ms|10ms|10ms|21322msms|20000ms|<span style="color: green;">6.6%</span>|
+|A|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|20ms|40ms|15252ms|14880ms|<span style="color: green;">2.5%</span>|
+|B|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|20ms|60ms|20045ms|19680ms|<span style="color: green;">1.9%</span>|
 
 
 Obervaciones: 
  -  A medida que se incrementa la relación entre el Arrival Rate y los Service Rate, el gap se incrementa. 
  -  Incrementar la cantidad de tareas tambien disminuye el gap. 
+ -  A medida que se aumentan los tiempos, diminuye el gap. 
 
 
 #### 2.5.6 Verificación de los invariantes
@@ -250,49 +253,86 @@ Como tal mensaje no aparece en el log se concluye que se cumplen las ecuaciones 
 
 #### T-Invariantes
 
-Al finalizar el programa, se verificaron los T-invariantes de la siguiente manera: se almacenaron todos los disparos en una lista y luego para cada conjunto de T-Invariantes, si la lista de disparos contiene el mismo conjunto, se procedió a borrar el conjunto de la lista. Se repitió este procedimiento hasta que la lista de disparos no contenga un conjunto de disparos que sea igual a algún conjunto de T-invariante.
 
+Para la verificación de los T invariantes se implementó un script en python, haciendo uso de la biblioteca "re" de expresiones regulares, más especificamente de la función *re.subn(pattern, repl, string)*, cuyos argumentos son un *string* de entrada, un formato de respuesta *repl* y una expresión regular *pattern* que buscará substraer los T invariantes dentro del string.
+Esta función se ejecuta de manera iterativa haciendo uso de un loop, hasta que ya no haya más matches. Luego se loggea  en un archivo llamado logTinv.txt.
 
-#### Verificación de los T-Invariantes (resultado):
+Para crear la expresión regular se hizo uso de la herramienta Debuggex (véase Bibliografía), con la cuál se pudo analizar paso por paso la composición de la expresión. A continuación una figura:
 
-*Disparos restantes luego de remover los tinv:
-Total de T-invariantes borrados: 1000*
+![alt text](img/rex.png "Plot5")
 
-Como la lista final de disparos queda vacía al extraerle los conjuntos de invariantes de transición o queda con un inicio de algún T-invariante,  se concluye que el programa funciona correctamente.
 
 ```python
-import re
-''' 
-    param: name of file
-    return: disparos as string 
-    e.g:
-''' 
-def readFile(filename):
-    disparos=''
-    with open(filename, 'rt') as f:
-        data = f.readlines()
-    for line in data:
-        if line.__contains__('disparo'):
-            line_arr=line.split('=')
-            disparo=int(line_arr[1])
-            disparos+='T'+str(disparo)
-    return disparos
+# ...
+def tinv_matcher():
+    logfilenameI='./log.txt'
+    logfilenameO='./logTinv.txt'
+    pattern='(T0)(.*?)((T1)(.*?)((T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)|(T6)(.*?)(T3)(.*?)(T4)|(T3)(.*?)((T4)(.*?)(T6)|(T6)(.*?)(T4)))|(T2)(.*?)((TB)(.*?)(TC)(.*?)(T9)(.*?)(TA)(.*?)(TE)|(TD)(.*?)(T9)(.*?)(TA)|(T9)(.*?)((TA)(.*?)(TD)|(TD)(.*?)(TA))))'
+    repl='\g<2>\g<5>\g<8>\g<10>\g<12>\g<14>\g<17>\g<19>\g<22>\g<25>\g<28>\g<31>\g<34>\g<36>\g<38>\g<40>\g<43>\g<45>\g<48>\g<51>\g<54>'
+    string=''
+    terminate=False
+    iteration=0
 
-if __name__ == "__main__":
-    filename='../../log.txt'
-    pattern = '(T0)(.*?)((T1)(.*?)(T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T2)(.*?)(T11)(.*?)(T12)(.*?)(T9)(.*?)(T10)(.*?)(T14)(.*?))'
-    repl='[removed]'
-    string=readFile(filename)
-    line = re.subn(pattern, repl, string)
-    print(string)
-    print(line)
+    # msg
+    print("Generating file : "+logfilenameO+" ...")
+
+    # Disparos to string (i.e. T0T1T6T0T1T6T0T2T13T0T2T13T0T1T6...)
+    string=readFile(logfilenameI)
+
+    # Create logTinv.txt
+    logfile = open(logfilenameO, "a")
+    logfile.truncate(0)
+    logfile.write("INPUT: "+string+'\n\n')
+
+    while(not terminate):
+        print("Iteration: "+str(iteration))
+        line = re.subn(pattern, repl, string) # <----------------------------
+        matches=int(line[1])
+        string=str(line[0])
+        leng=len(string)
+        logfile.write('| ITERATION{:>5} | LENGHT{:>6} | MATCHES{:>5}'.format(str(iteration), str(leng), str(matches))+" | OUTPUT "+string+'\n')
+        iteration+=1
+        if not matches:
+            terminate=True
+    print("Check File !!! => "+logfilenameO)
+    logfile.write("\n MEMO T-INVARIANTS:\n{T0,T1,T5,T7,T3,T4,T8}\n{T0,T1,T6,T3,T4}\n{T0,T2,TB,TC,T9,TA,TE}\n{T0,T2,TD,T9,TA}")
+    logfile.close
+# ...
+
 ```
+A continución, una ejecución:
+```bash
+$ python3 src/verification/TransitionInvariant.py
+...
+Iteration: 300
+Iteration: 301
+Iteration: 302
+Iteration: 303
+Check File !!! => ./logTinv.txt
+```
+Se inspecciona el archivo de log:
 
 ```bash
-$ cd src/verificacion
-$ python3 TransitionInvatiant.py
-```
+# ./logTinv.txt
+...
+| ITERATION  294 | LENGHT    80 | MATCHES    1 | OUTPUT T0T1T6T0T2TDT0T1T6T0T2TDT0T2TDT0T2TDT0T1T6T0T1T6T3T4T3T4T3T4T3T4T9TAT9TAT9TAT9TA
+| ITERATION  295 | LENGHT    70 | MATCHES    1 | OUTPUT T0T2TDT0T1T6T0T2TDT0T2TDT0T2TDT0T1T6T0T1T6T3T4T3T4T3T4T9TAT9TAT9TAT9TA
+| ITERATION  296 | LENGHT    60 | MATCHES    1 | OUTPUT T0T1T6T0T2TDT0T2TDT0T2TDT0T1T6T0T1T6T3T4T3T4T3T4T9TAT9TAT9TA
+| ITERATION  297 | LENGHT    50 | MATCHES    1 | OUTPUT T0T2TDT0T2TDT0T2TDT0T1T6T0T1T6T3T4T3T4T9TAT9TAT9TA
+| ITERATION  298 | LENGHT    40 | MATCHES    1 | OUTPUT T0T2TDT0T2TDT0T1T6T0T1T6T3T4T3T4T9TAT9TA
+| ITERATION  299 | LENGHT    30 | MATCHES    1 | OUTPUT T0T2TDT0T1T6T0T1T6T3T4T3T4T9TA
+| ITERATION  300 | LENGHT    20 | MATCHES    1 | OUTPUT T0T1T6T0T1T6T3T4T3T4
+| ITERATION  301 | LENGHT    10 | MATCHES    1 | OUTPUT T0T1T6T3T4
+| ITERATION  302 | LENGHT     0 | MATCHES    1 | OUTPUT 
+| ITERATION  303 | LENGHT     0 | MATCHES    0 | OUTPUT 
 
+ MEMO T-INVARIANTS:
+{T0,T1,T5,T7,T3,T4,T8}
+{T0,T1,T6,T3,T4}
+{T0,T2,TB,TC,T9,TA,TE}
+{T0,T2,TD,T9,TA}
+```
+Se observa que luego de la iteración 302, ya no hay más transciones que verificar. Por lo que todas las t-invariantes han sido verificadas correctamente. 
 
 
 ## 3. Conclusión
@@ -302,9 +342,9 @@ Tras la realización del presente trabajo de pudieron extraer numerosas conclusi
 Se aprendió a razonar en un paradigma de programación distinto al de la programación secuencial, asi como explotar las ventajas del multiprocesamiento.
 Se aprendió a **modelar** una solucion mediante el uso de redes de petri temporales aprovechando sus ventajas tales  como la representacion grafica, su ecuación de estados generalizada, sus invariantes, su escalabilidad, pero asi tambien se pudo evidenciar sus limitaciones en cuanto a complejidad. 
 
-Además de apredió a **implementar** dicho modelo, mediante el uso de programación orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers. Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. 
+Además de apredió a **implementar** dicho modelo, mediante el uso de programación orientada a objetos en Java, destacando las clases *Monitor, RdP e Hilos* en las cuales fué de mucha ayuda el uso de clases ya implementadas en *java.utils* para colecciones, semaforos y buffers. Cabe destacar la dificultad extra genera debuguear y testear el correcto funcionamiento de los hilos. Y a modo de test, se aprendió  a implementar un validador de T-Invariantes en Python, con el cuál se verificó que el funcionamiento entre el modelo y la implementación se coherente.
 
-Tambien hubo decisiones de diseños que vale la pena recalcar, en un principio la cantidad de hilos fue menor, lo que generaba que el tiempo de ejecucion se fuera menor. Esto se ve claramente ejecutando el programa en euna computadora distinta, debido a  la limitación en el sistema ya que el procesador cuenta con 2 núcleos los cuales solo pueden procesar  cada uno simultáneamente y la cantidad de hilos utilizados en nuestro caso es de 9. Una solución para minimizar el lapso de tiempo sería la utilización de una menor cantidad de hilos. Tambien desarrollar el programa en un lenguaje como C, posiblemente mejore tambien los tiempos.
+Tambien hubo decisiones de diseños que vale la pena recalcar, en un principio la cantidad de hilos fue menor, lo que generaba que el tiempo de ejecucion se fuera menor. Esto se ve claramente ejecutando el programa en euna computadora distinta, debido a  la limitación en el sistema ya que el procesador cuenta con 2 núcleos los cuales solo pueden procesar  cada uno simultáneamente y la cantidad de hilos utilizados en nuestro caso es de 9. Una solución para minimizar el lapso de tiempo sería la utilización de una menor cantidad de hilos. Tambien desarrollar el programa en un lenguaje como C, posiblemente mejore tambien los tiempos. 
 
 Este trabajo además nos ha permitido **ampliar** el horizonte en el funcionamiento de otros tipos de sistemas, como los sistemas operativos, en particular Linux y de sus metodos de sincronizacion como SpinLocks, Semaphores, Mutexes.
 
@@ -313,6 +353,9 @@ Este trabajo además nos ha permitido **ampliar** el horizonte en el funcionamie
 - *Ecuación de estado generalizada para redes de Petri no 
 autónomas y con distintos tipos de arcos. Dr. Ing. Orlando Micolini1, Geol. Marcelo Cebollada y Verdaguer1, Ing. Maximiliano Eschoyez, Ing. Luis Orlando Ventre1, Ing. Marcelo Ismael Schild.  Laboratorio de Arquitectura de Computadoras (LAC) FCEFyN  Universidad Nacional de Córdoba*.
 - https://docs.oracle.com/javase/7/docs/api/
+- https://www.debuggex.com/#cheatsheet
+- https://docs.python.org/3/library/re.html
+
 
 
 
