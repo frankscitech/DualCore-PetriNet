@@ -26,8 +26,8 @@ def readFile(filename):
 def tinv_matcher():
     logfilenameI='./log.txt'
     logfilenameO='./logTinv.txt'
-    pattern='(T0)(.*?)((T1)(.*?)((T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)(.*?)|(T6)(.*?)(T3)(.*?)(T4)(.*?))|(T2)(.*?)((TB)(.*?)(TC)(.*?)(T9)(.*?)(TA)(.*?)(TE)(.*?)|(TD)(.*?)(T9)(.*?)(TA)(.*?)))'
-    repl='\g<2>\g<5>\g<8>\g<10>\g<12>\g<14>\g<16>\g<18>\g<20>\g<22>\g<24>\g<27>\g<29>\g<31>\g<33>\g<35>\g<37>\g<39>\g<41>'
+    pattern='(T0)(.*?)((T1)(.*?)((T5)(.*?)(T7)(.*?)(T3)(.*?)(T4)(.*?)(T8)|(T6)(.*?)(T3)(.*?)(T4)|(T3)(.*?)((T4)(.*?)(T6)|(T6)(.*?)(T4)))|(T2)(.*?)((TB)(.*?)(TC)(.*?)(T9)(.*?)(TA)(.*?)(TE)|(TD)(.*?)(T9)(.*?)(TA)|(T9)(.*?)((TA)(.*?)(TD)|(TD)(.*?)(TA))))'
+    repl='\g<2>\g<5>\g<8>\g<10>\g<12>\g<14>\g<17>\g<19>\g<22>\g<25>\g<28>\g<31>\g<34>\g<36>\g<38>\g<40>\g<43>\g<45>\g<48>\g<51>\g<54>'
     string=''
     terminate=False
     iteration=0
@@ -35,20 +35,21 @@ def tinv_matcher():
     # msg
     print("Generating file : "+logfilenameO+" ...")
 
+    # Disparos to string (i.e. T0T1T6T0T1T6T0T2T13T0T2T13T0T1T6...)
+    string=readFile(logfilenameI)
+
     # Create logTinv.txt
     logfile = open(logfilenameO, "a")
     logfile.truncate(0)
+    logfile.write("INPUT: "+string+'\n\n')
 
-    # Disparos to string (i.e. T0T1T6T0T1T6T0T2T13T0T2T13T0T1T6...)
-    string=readFile(logfilenameI)
-    
     while(not terminate):
         print("Iteration: "+str(iteration))
         line = re.subn(pattern, repl, string)
         matches=int(line[1])
         string=str(line[0])
         leng=len(string)
-        logfile.write('ITERATION:{:>5} LENGHT:{:>6} MATCHES:{:>5}'.format(str(iteration), str(leng), str(matches))+" OUT:"+string+'\n')
+        logfile.write('| ITERATION{:>5} | LENGHT{:>6} | MATCHES{:>5}'.format(str(iteration), str(leng), str(matches))+" | OUTPUT "+string+'\n')
         iteration+=1
         if not matches:
             terminate=True
