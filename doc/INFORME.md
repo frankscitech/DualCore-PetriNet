@@ -110,7 +110,7 @@ Para la resolución de conflictos se utilizó la política solicitada para el tr
 
 
 
-![alt text](img/DiagramaDeClasesUML.png "Diagrama de Clases")
+![alt text](img/DiagramaDeClasesUML.jpg "Diagrama de Clases")
 *Figura.2.5.1.1.Diagrama de clases*
 
 #### 2.5.3 Diagrama de Secuencias
@@ -223,22 +223,21 @@ Por último. se agregan las siguientes observaciones:
 
  id| CPU |CPU Cores | CPU Threads| OnDemand | Tareas | Hilos |  Arrival Rate | Service Rate 1| Service Rate 2 |Tiempo Total| Tiempo Ideal | Gap |
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
-|0|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|1ms|10ms|10ms|6837ms|5000ms|<span style="color: red;">36%</span>|
-|1|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|10ms|10ms|11749ms|5000ms|<span style="color: red;">134%</span>|
-|2|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|10ms|10ms|10975ms|5000ms|<span style="color: red;">119%</span>|
-|3|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|20ms|20ms|10847ms|10000ms|<span style="color: green;">8.5%</span>|
-|4|Intel Core i7-3517U 1.90GHz|2|4|Si|3000|9|10ms|20ms|20ms|32699ms|30000ms|<span style="color: green;">8.9%</span>|
-|5|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|30ms|30ms|15541ms|15000ms|<span style="color: green;">4%</span>|
-|6|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|30ms|30ms|46527ms|45000ms|<span style="color: green;">3.4%</span>|
-|7|Intel Core i7-3517U 1.90GHz|2|4|No|1000|9|10ms|50ms|50ms|25501ms|25000ms|<span style="color: green;">2%</span>|
-|8|Intel Core i7-3517U 1.90GHz|2|4|No|3000|9|10ms|100ms|100ms|153339ms|150000ms|<span style="color: green;">2%</span>|
-|9|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|20ms|10ms|10ms|21322msms|20000ms|<span style="color: green;">6.6%</span>|
-|A|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|20ms|40ms|15252ms|14880ms|<span style="color: green;">2.5%</span>|
-|B|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|10ms|20ms|60ms|20045ms|19680ms|<span style="color: green;">1.9%</span>|
+|0|IntelCorei7-3517U1.90GHz|2|4|Si|1000|9|1ms|10ms|10ms|6837ms|5000ms|<span style="color: red;">36%</span>|
+|1|IntelCorei7-3517U1.90GHz|2|4|Si|1000|9|10ms|10ms|10ms|11749ms|10000ms|<span style="color: red;">18%</span>|
+|2|IntelCorei7-3517U1.90GHz|2|4|No|1000|9|**10ms**|**10ms**|**10ms**|10975ms|10000ms|<span style="color: green;">9.5%</span>|
+|3|IntelCorei7-3517U1.90GHz|2|4|No|1000|9|10ms|20ms|20ms|10847ms|10000ms|<span style="color: green;">8.5%</span>|
+|4|IntelCorei7-3517U1.90GHz|2|4|Si|3000|9|10ms|20ms|20ms|32699ms|30000ms|<span style="color: green;">8.9%</span>|
+|5|IntelCorei7-3517U1.90GHz|2|4|No|1000|9|10ms|30ms|30ms|15541ms|15000ms|<span style="color: green;">4%</span>|
+|6|IntelCorei7-3517U1.90GHz|2|4|No|3000|9|10ms|30ms|30ms|46527ms|45000ms|<span style="color: green;">3.4%</span>|
+|7|IntelCorei7-3517U1.90GHz|2|4|No|1000|9|10ms|50ms|50ms|25501ms|25000ms|<span style="color: green;">2%</span>|
+|8|IntelCorei7-3517U1.90GHz|2|4|No|3000|9|10ms|100ms|100ms|153339ms|150000ms|<span style="color: green;">2%</span>|
+|9|IntelCorei7-3517U1.90GHz|2|4|Si|1000|9|**20ms**|**10ms**|**10ms**|21322msms|20000ms|<span style="color: green;">6.6%</span>|
+|A|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|**10ms**|**20ms**|**40ms**|15252ms|14880ms|<span style="color: green;">2.5%</span>|
+|B|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|**10ms**|**20ms**|**60ms**|20045ms|19680ms|<span style="color: green;">1.9%</span>|
 
 
 Obervaciones: 
- -  A medida que se incrementa la relación entre el Arrival Rate y los Service Rate, el gap se incrementa. 
  -  Incrementar la cantidad de tareas tambien disminuye el gap. 
  -  A medida que se aumentan los tiempos, diminuye el gap. 
 
