@@ -233,8 +233,8 @@ Por último. se agregan las siguientes observaciones:
 |7|IntelCorei7-3517U1.90GHz|2|4|No|1000|9|10ms|50ms|50ms|25501ms|25000ms|<span style="color: green;">2%</span>|
 |8|IntelCorei7-3517U1.90GHz|2|4|No|3000|9|10ms|100ms|100ms|153339ms|150000ms|<span style="color: green;">2%</span>|
 |9|IntelCorei7-3517U1.90GHz|2|4|Si|1000|9|**20ms**|**10ms**|**10ms**|21322msms|20000ms|<span style="color: green;">6.6%</span>|
-|A|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|**10ms**|**20ms**|**40ms**|15252ms|14880ms|<span style="color: green;">2.5%</span>|
-|B|Intel Core i7-3517U 1.90GHz|2|4|Si|1000|9|**10ms**|**20ms**|**60ms**|20045ms|19680ms|<span style="color: green;">1.9%</span>|
+|A|IntelCorei7-3517U1.90GHz|2|4|Si|1000|9|**10ms**|**20ms**|**40ms**|15252ms|14880ms|<span style="color: green;">2.5%</span>|
+|B|IntelCorei7-3517U1.90GHz|2|4|Si|1000|9|**10ms**|**20ms**|**60ms**|20045ms|19680ms|<span style="color: green;">1.9%</span>|
 
 
 Obervaciones: 
