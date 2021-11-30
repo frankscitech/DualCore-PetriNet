@@ -219,7 +219,10 @@ Se observa que la tasa de cambia termina siendo el triple al igual que el caso a
 
 Se puede observar que como el núcleo 1 procesa las tareas en 5 ms. En la mayoría de las ejecuciones del programa, las 1000 tareas serán procesadas por e’l ya que estara vacia debido a que el tiempo de procesamiento es la mitad del tiempo que tardan en llegar las tareas. 
 
-Por último. se agregan las siguientes observaciones: 
+Por último. se agregan las siguiente tabla comparativa. Donde se calcula  la brecha porcentual - Gap - que existe entre el Tiempo ToTal de Ejecución (experimental) y el Tiempo Ideal Estimado (teóiico) dada la ecuación:
+ 
+![alt text](img/EqtiempoIdeal.png "Tiempo Ideal")
+
 
  id| CPU |CPU Cores | CPU Threads| OnDemand | Tareas | Hilos |  Arrival Rate | Service Rate 1| Service Rate 2 |Tiempo Total| Tiempo Ideal | Gap |
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
@@ -240,7 +243,6 @@ Por último. se agregan las siguientes observaciones:
 Obervaciones: 
  -  Incrementar la cantidad de tareas tambien disminuye el gap. 
  -  A medida que se aumentan los tiempos, diminuye el gap. 
-
 
 #### 2.5.6 Verificación de los invariantes
 
