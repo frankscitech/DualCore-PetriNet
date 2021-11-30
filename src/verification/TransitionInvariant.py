@@ -13,6 +13,7 @@ def readFile(filename):
             line_arr=line.split('=')
             disparo=int(line_arr[1])
             disparos+='T'+'{:X}'.format(disparo)
+            
     return disparos 
 
 '''
@@ -40,8 +41,8 @@ def tinv_matcher():
 
     # Create logTinv.txt
     logfile = open(logfilenameO, "a")
-    logfile.truncate(0)
-    logfile.write("INPUT: "+string+'\n\n')
+    logfile.truncate(0) # Clear file
+    logfile.write("INPUT: "+string+'\n\n') # First Line
 
     while(not terminate):
         print("Iteration: "+str(iteration))
